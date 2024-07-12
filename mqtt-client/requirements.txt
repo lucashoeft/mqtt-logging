@@ -1,0 +1,6 @@
+python-dotenv
+psycopg
+psycopg2-binary
+psycopg-binary
+psycopg[binary,pool]
+paho-mqtt
