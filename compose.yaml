@@ -1,21 +1,21 @@
 services:
   postgres:
-      build: ./postgres
-      ports:
-        - "5433:5432"
-      volumes:
-        - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-        - ./postgres/data:/var/lib/postgresql/data
-      environment:
-        POSTGRES_USER: admin
-        POSTGRES_PASSWORD: admin
-        POSTGRES_DB: postgres
-      healthcheck:
-        test: [ "CMD-SHELL", "pg_isready --username=admin --dbname=postgres" ]
-        interval: 10s
-        timeout: 5s
-        retries: 5
-      restart: always
+    build: ./postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready --username=${POSTGRES_USER} --dbname=${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
   mqtt-client:
     build: ./mqtt-client
     ports:
@@ -28,3 +28,6 @@ services:
           path: ./mqtt-client
           target: /mqtt-client
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
