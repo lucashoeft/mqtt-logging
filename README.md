@@ -9,7 +9,7 @@ This client tool can be used to log incoming MQTT messages to a Postgres databas
 
 ## Features
 
-* .env file for credentials to connect to the MQTT broker and for the Postgres database
+* `.env` file for credentials to connect to the MQTT broker and for the Postgres database
 * Logs connections, subscriptions, messages and other client logs (such as PINGREQ and PINGRESP)
 * Postgres database is persisted in the Postgres directory
 * Automatically creates the table in Postgres on first startup
@@ -26,5 +26,5 @@ You can stop the containers with the command `docker compose down`.
 ## Known Issues / Limitations
 
 * Better error handling on client side
-* Log more issues on client side
-* Make client configuration more robust (e.g authentication)
+* Log errors on client side
+* Make client configuration more robust (e.g. authentication)
