@@ -12,9 +12,9 @@ This client tool can be used to log incoming MQTT messages to a Postgres databas
 
 ## Working with Docker
 
-Before the first start, you need to specify an `.env` file. See `.env.example` file for the necessary credentials you need to specify. Before the first start, run the command `docker compose build` (or `docker compose build --no-cache` if you have run it before).
+Before the first start, you need to specify an `.env` file. See `.env.example` file for the necessary credentials you need to specify. Then run the command `docker compose build` (or `docker compose build --no-cache` if you have run it before).
 
-Then the start the containers by running `docker compose up -w` in the terminal. When the `client.py` file is saved, the client container is restarted to incorporate the changes.
+Then start the containers by running `docker compose up -w` in the terminal. When the `client.py` file is saved, the client container is restarted to incorporate the changes.
 
 You can stop the containers with the command `docker compose down`.
 
