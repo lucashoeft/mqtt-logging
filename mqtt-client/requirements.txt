@@ -1,6 +1,3 @@
-python-dotenv
-psycopg
-psycopg2-binary
-psycopg-binary
-psycopg[binary,pool]
-paho-mqtt
+python-dotenv~=1.0
+psycopg2-binary~=2.9
+paho-mqtt~=2.1

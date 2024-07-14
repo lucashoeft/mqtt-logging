@@ -1,13 +1,14 @@
-import os
-from dotenv import load_dotenv
-import paho.mqtt.client as mqtt
-import time
-import psycopg2
 import json
-from datetime import datetime, timezone
+import os
+import paho.mqtt.client as mqtt
+import psycopg2
+from datetime import datetime
+from dotenv import load_dotenv
 
 load_dotenv()
 
+MQTT_HOST = os.getenv('MQTT_HOST')
+MQTT_PORT = int(os.getenv('MQTT_PORT'))
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 MQTT_TOPIC = os.getenv('MQTT_TOPIC')
@@ -119,11 +120,11 @@ mqttc.on_connect = on_connect
 mqttc.on_message = on_message
 mqttc.on_subscribe = on_subscribe
 mqttc.on_log = on_log
-mqttc.on_disconnect = on_disconnect
+# mqttc.on_disconnect = on_disconnect
 
-# client.tls_set()
+# mqttc.tls_set() # requires certificates
 # client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
 # client.will_set() # last will / testament
-mqttc.connect("test.mosquitto.org", 1883, 60)
+mqttc.connect(MQTT_HOST, MQTT_PORT, 60)
 
 mqttc.loop_forever()
