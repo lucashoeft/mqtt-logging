@@ -25,7 +25,7 @@ conn = psycopg2.connect(database = POSTGRES_DB,
 def on_connect(client, userdata, flags, reason_code, properties):
     
     # subscribe to given topic
-    client.subscribe(MQTT_TOPIC)
+    client.subscribe(MQTT_TOPIC, qos=2)
     
     # log sucessful connection
     query = """
